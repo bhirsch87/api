@@ -77,6 +77,26 @@
                     "text/plain"
                 ]
             }
+        },
+        "/revoke/authToken/{id}": {
+            "get": {
+                "description": "Revoke current token",
+                "operationId": "GetAuthRevoke",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "produces": [
+                    "application/hal+json",
+                    "text/plain"
+                ]
+            }
         }
     },
     "parameters": {
