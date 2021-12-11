@@ -2,7 +2,7 @@
     "swagger": "2.0",
     "info": {
         "title": "DemoAPI",
-        "description": "A sample API with information related to a technical conference.  The available resources  include *Speakers*, *Sessions* and *Topics*.  A single write operation is available to provide  feedback on a session.",
+        "description": "A sample API with information re to provide  feedback on a session.",
         "version": "2.0.0"
     },
     "host": "conferenceapi.azurewebsites.net",
@@ -33,8 +33,8 @@
     "paths": {
         "/tests": {
             "get": {
-                "description": "A list of sessions.  Optional parameters work as filters to reduce the listed sessions.",
-                "operationId": "TestSession",
+                "description": "A list of sessions.  Optional as filters to reduce the listed sessions.",
+                "operationId": "TestSessions",
                 "parameters": [
                     {
                         "name": "btest",
@@ -65,8 +65,8 @@
         },
         "/tests/{id}": {
             "get": {
-                "description": "Retreive a representation of a single session by Id",
-                "operationId": "TestSessions",
+                "description": "Retreive a  single session by Id",
+                "operationId": "TestSession",
                 "parameters": [
                     {
                         "$ref": "#/parameters/id"
@@ -83,7 +83,6 @@
                 ]
             }
         },
-
         "/sessions": {
             "get": {
                 "description": "A list of sessions.  Optional parameters work as filters to reduce the listed sessions.",
@@ -354,3 +353,4 @@
         }
     }
 }
+
