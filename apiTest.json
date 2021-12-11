@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "title": "Demo Conference API",
+        "title": "DemoAPI",
         "description": "A sample API with information related to a technical conference.  The available resources  include *Speakers*, *Sessions* and *Topics*.  A single write operation is available to provide  feedback on a session.",
         "version": "2.0.0"
     },
@@ -31,6 +31,58 @@
         }
     ],
     "paths": {
+        "/tests": {
+            "get": {
+                "description": "A list of sessions.  Optional parameters work as filters to reduce the listed sessions.",
+                "operationId": "TestSessions",
+                "parameters": [
+                    {
+                        "name": "btest",
+                        "in": "query",
+                        "type": "string"
+                    },
+                    {
+                        "name": "ctest",
+                        "in": "query",
+                        "description": "Format - int32.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "ftest",
+                        "in": "query",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OKAY DOKAY"
+                    }
+                },
+                "produces": [
+                    "application/vnd.collection+json"
+                ]
+            }
+        },
+        "/tests/{id}": {
+            "get": {
+                "description": "Retreive a representation of a single session by Id",
+                "operationId": "TestSessions",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "produces": [
+                    "application/hal+json",
+                    "text/plain"
+                ]
+            }
+        },
         "/sessions": {
             "get": {
                 "description": "A list of sessions.  Optional parameters work as filters to reduce the listed sessions.",
