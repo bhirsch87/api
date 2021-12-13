@@ -1,0 +1,111 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "DemoAPI",
+        "description": "A sample API with information related to a technical conference.  The available resources  include *Speakers*, *Sessions* and *Topics*.  A single write operation is available to provide  feedback on a session.",
+        "version": "2.0.0"
+    },
+    "host": "conferenceapi.azurewebsites.net",
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "securityDefinitions": {
+        "apiKeyHeader": {
+            "type": "apiKey",
+            "name": "Ocp-Apim-Subscription-Key",
+            "in": "header"
+        },
+        "apiKeyQuery": {
+            "type": "apiKey",
+            "name": "subscription-key",
+            "in": "query"
+        }
+    },
+    "security": [
+        {
+            "apiKeyHeader": []
+        },
+        {
+            "apiKeyQuery": []
+        }
+    ],
+    "paths": {
+        "/auth": {
+            "get": {
+                "description": "A list of sessions.  Optional parameters work as filters to reduce the listed sessions.",
+                "operationId": "GetAuth",
+                "parameters": [
+                    {
+                        "name": "auth",
+                        "in": "query",
+                        "type": "string"
+                    },
+                    {
+                        "name": "auth2",
+                        "in": "query",
+                        "description": "Format - int32.",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OKAY DOKAY"
+                    }
+                },
+                "produces": [
+                    "application/vnd.collection+json"
+                ]
+            }
+        },
+        "/authToken/{id}": {
+            "get": {
+                "description": "Gets current auth token status",
+                "operationId": "GetAuthStatus",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "produces": [
+                    "application/hal+json",
+                    "text/plain"
+                ]
+            }
+        },
+        "/revoke/authToken/{id}": {
+            "get": {
+                "description": "Revoke current token",
+                "operationId": "GetAuthRevoke",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "produces": [
+                    "application/hal+json",
+                    "text/plain"
+                ]
+            }
+        }
+    },
+    "parameters": {
+        "id": {
+            "name": "id",
+            "in": "path",
+            "description": "Format - int32.",
+            "required": true,
+            "type": "integer"
+        }
+    }
+}
