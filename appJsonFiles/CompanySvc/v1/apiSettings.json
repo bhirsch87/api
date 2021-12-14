@@ -1,11 +1,11 @@
 {
     "swagger": "2.0",
     "info": {
-        "title": "AuthorizationAPI",
+        "title": "DemoAPICompany",
         "description": "A sample API with information related to a technical conference.  The available resources  include *Speakers*, *Sessions* and *Topics*.  A single write operation is available to provide  feedback on a session.",
         "version": "2.0.0"
     },
-    "host": "test.azurewebsites.net",
+    "host": "conferenceapi.azurewebsites.net",
     "schemes": [
         "http",
         "https"
@@ -31,21 +31,26 @@
         }
     ],
     "paths": {
-        "/authorization": {
+        "/GetPmt": {
             "get": {
-                "description": "A list of sessions.  Optional parameters work as filters to reduce the listed sessions.",
-                "operationId": "GetAuthorization",
+                "description": "A list of client payments.",
+                "operationId": "GetPmt",
                 "parameters": [
                     {
-                        "name": "auth",
+                        "name": "pmt1",
                         "in": "query",
                         "type": "string"
                     },
                     {
-                        "name": "auth2",
+                        "name": "pmt2",
                         "in": "query",
                         "description": "Format - int32.",
                         "type": "integer"
+                    },
+                    {
+                        "name": "ftest",
+                        "in": "query",
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -58,30 +63,10 @@
                 ]
             }
         },
-        "/authorization/{id}": {
+        "/getpmt/{id}": {
             "get": {
-                "description": "Gets current auth token status",
-                "operationId": "GetAuthorizationId",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/id"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    }
-                },
-                "produces": [
-                    "application/hal+json",
-                    "text/plain"
-                ]
-            }
-        },
-        "/authorization/{id}/revoke": {
-            "get": {
-                "description": "Gets current auth token status",
-                "operationId": "RevokeAuthorization",
+                "description": "Retreive a single payment status",
+                "operationId": "GetpmtId",
                 "parameters": [
                     {
                         "$ref": "#/parameters/id"
