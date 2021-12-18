@@ -1,0 +1,348 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+      "title": "CicPlus.Web.EFormsService",
+      "version": "1.0"
+    },
+    "servers": [
+      {
+        "url": "/eformssvc"
+      }
+    ],
+    "paths": {
+      "/api/eforms/employee-data": {
+        "post": {
+          "tags": [
+            "EForms"
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EmployeeModel"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EmployeeModel"
+                  }
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EmployeeModel"
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/api/eforms/employee-form-status": {
+        "get": {
+          "tags": [
+            "EForms"
+          ],
+          "parameters": [
+            {
+              "name": "employeeId",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/api/eforms/auxiliary-data": {
+        "post": {
+          "tags": [
+            "EForms"
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AuxiliaryDataModel"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AuxiliaryDataModel"
+                  }
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AuxiliaryDataModel"
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/api/eforms/cert": {
+        "get": {
+          "tags": [
+            "EForms"
+          ],
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/version": {
+        "get": {
+          "tags": [
+            "Version"
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "AddressModel": {
+          "type": "object",
+          "properties": {
+            "primary": {
+              "type": "boolean"
+            },
+            "type": {
+              "type": "string",
+              "nullable": true
+            },
+            "status": {
+              "type": "string",
+              "nullable": true
+            },
+            "line1": {
+              "type": "string",
+              "nullable": true
+            },
+            "line2": {
+              "type": "string",
+              "nullable": true
+            },
+            "line3": {
+              "type": "string",
+              "nullable": true
+            },
+            "city": {
+              "type": "string",
+              "nullable": true
+            },
+            "state": {
+              "type": "string",
+              "nullable": true
+            },
+            "postalCode": {
+              "type": "string",
+              "nullable": true
+            },
+            "country": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "AuxiliaryDataElementModel": {
+          "required": [
+            "name"
+          ],
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "AuxiliaryDataModel": {
+          "required": [
+            "employeeIdentifier",
+            "formCode"
+          ],
+          "type": "object",
+          "properties": {
+            "employeeIdentifier": {
+              "maxLength": 50,
+              "type": "string"
+            },
+            "formCode": {
+              "maxLength": 50,
+              "type": "string"
+            },
+            "dataElements": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/AuxiliaryDataElementModel"
+              },
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "EmployeeModel": {
+          "required": [
+            "employeeIdentifier"
+          ],
+          "type": "object",
+          "properties": {
+            "employeeIdentifier": {
+              "type": "string"
+            },
+            "firstName": {
+              "type": "string",
+              "nullable": true
+            },
+            "middleName": {
+              "type": "string",
+              "nullable": true
+            },
+            "lastName": {
+              "type": "string",
+              "nullable": true
+            },
+            "taxID": {
+              "type": "string",
+              "nullable": true
+            },
+            "email": {
+              "type": "string",
+              "nullable": true
+            },
+            "storeNumber": {
+              "type": "string",
+              "nullable": true
+            },
+            "birthDate": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "hireDate": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "termDate": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "extraEmployeeNumber": {
+              "type": "string",
+              "nullable": true
+            },
+            "companyName": {
+              "type": "string",
+              "nullable": true
+            },
+            "companyEIN": {
+              "type": "string",
+              "nullable": true
+            },
+            "companyIdentifier": {
+              "type": "string",
+              "nullable": true
+            },
+            "thirdPartySourceId": {
+              "type": "string",
+              "nullable": true
+            },
+            "thirdPartyStatusCallback": {
+              "type": "string",
+              "nullable": true
+            },
+            "residentialAddresses": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/AddressModel"
+              },
+              "nullable": true
+            },
+            "workAddresses": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/AddressModel"
+              },
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "securitySchemes": {
+        "Bearer": {
+          "type": "apiKey",
+          "description": "JWT Authorization header using the Bearer scheme.",
+          "name": "Authorization",
+          "in": "header"
+        }
+      }
+    },
+    "security": [
+      {
+        "Bearer": [ ]
+      }
+    ]
+  }
