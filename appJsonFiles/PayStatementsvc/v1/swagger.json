@@ -2619,10 +2619,10 @@
           }
         }
       },
-      "/version": {
+      "/version": { 
         "get": {
           "tags": [
-            "Version"
+            "Payersion"
           ],
           "responses": {
             "200": {
