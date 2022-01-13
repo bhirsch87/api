@@ -1,91 +1,4619 @@
 {
-    "swagger": "2.0",
+    "openapi": "3.0.1",
     "info": {
-        "title": "AuthorizationAPI",
-        "description": "A sample API with information related to a technical conference.  The available resources  include *Speakers*, *Sessions* and *Topics*.  A single write operation is available to provide  feedback on a session.",
-        "version": "2.0.0"
+      "title": "CicPlus.Web.CompanyService",
+      "version": "1.0"
     },
-    "host": "test.azurewebsites.net",
-    "schemes": [
-        "http",
-        "https"
-    ],
-    "securityDefinitions": {
-        "apiKeyHeader": {
-            "type": "apiKey",
-            "name": "Ocp-Apim-Subscription-Key",
-            "in": "header"
-        },
-        "apiKeyQuery": {
-            "type": "apiKey",
-            "name": "subscription-key",
-            "in": "query"
-        }
-    },
-    "security": [
-        {
-            "apiKeyHeader": []
-        },
-        {
-            "apiKeyQuery": []
-        }
+    "servers": [
+      {
+        "url": "/authorizationsvc"
+      }
     ],
     "paths": {
-        "/authorization": {
-            "get": {
-                "description": "A list of sessions.  Optional parameters work as filters to reduce the listed sessions.",
-                "operationId": "GetAuth",
-                "parameters": [
-                    {
-                        "name": "auth",
-                        "in": "query",
-                        "type": "string"
+      "/api/v1/admin/authdata": {
+        "post": {
+          "tags": [
+            "Admin"
+          ],
+          "summary": "Returns summary data after staging and processing an array of auth data values",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthDataRequestModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthDataRequestModel"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthDataRequestModel"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete","data":{"fileLogId":"00000000-0000-0000-0000-000000000000","totalNew":0,"totalRecords":0,"totalUpdates":0,"totalErrors":0,"totalNoChange":0,"totalEmpIdUpdate":0,"totalAuthValueChange":0,"totalStatusChange":0,"totalDuplicates":0,"duplicateAuthValues":["Dup1","Dup2","Dup3"],"thresholdExceptions":["Exception1","Exception2"],"errorDetails":[{"line":3,"value":"Auth value 1 validation failed"}],"employeeDetails":[{"Key":"string","Value":"Error"}]}}
+                },
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete","data":{"fileLogId":"00000000-0000-0000-0000-000000000000","totalNew":0,"totalRecords":0,"totalUpdates":0,"totalErrors":0,"totalNoChange":0,"totalEmpIdUpdate":0,"totalAuthValueChange":0,"totalStatusChange":0,"totalDuplicates":0,"duplicateAuthValues":["Dup1","Dup2","Dup3"],"thresholdExceptions":["Exception1","Exception2"],"errorDetails":[{"line":3,"value":"Auth value 1 validation failed"}],"employeeDetails":[{"Key":"string","Value":"Error"}]}}
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete","data":{"fileLogId":"00000000-0000-0000-0000-000000000000","totalNew":0,"totalRecords":0,"totalUpdates":0,"totalErrors":0,"totalNoChange":0,"totalEmpIdUpdate":0,"totalAuthValueChange":0,"totalStatusChange":0,"totalDuplicates":0,"duplicateAuthValues":["Dup1","Dup2","Dup3"],"thresholdExceptions":["Exception1","Exception2"],"errorDetails":[{"line":3,"value":"Auth value 1 validation failed"}],"employeeDetails":[{"Key":"string","Value":"Error"}]}}
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":false,"message":"No Records to process"}
+                },
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":false,"message":"No Records to process"}
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":false,"message":"No Records to process"}
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/admin/authdata/stage": {
+        "post": {
+          "tags": [
+            "Admin"
+          ],
+          "summary": "Returns summary data after staging an array of auth data values",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthDataRequestModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthDataRequestModel"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthDataRequestModel"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete","data":{"fileLogId":"00000000-0000-0000-0000-000000000000","totalNew":0,"totalRecords":0,"totalUpdates":0,"totalErrors":0,"totalNoChange":0,"totalEmpIdUpdate":0,"totalAuthValueChange":0,"totalStatusChange":0,"totalDuplicates":0,"duplicateAuthValues":["Dup1","Dup2","Dup3"],"thresholdExceptions":["Exception1","Exception2"],"errorDetails":[{"line":3,"value":"Auth value 1 validation failed"}],"employeeDetails":[{"Key":"string","Value":"Error"}]}}
+                },
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete","data":{"fileLogId":"00000000-0000-0000-0000-000000000000","totalNew":0,"totalRecords":0,"totalUpdates":0,"totalErrors":0,"totalNoChange":0,"totalEmpIdUpdate":0,"totalAuthValueChange":0,"totalStatusChange":0,"totalDuplicates":0,"duplicateAuthValues":["Dup1","Dup2","Dup3"],"thresholdExceptions":["Exception1","Exception2"],"errorDetails":[{"line":3,"value":"Auth value 1 validation failed"}],"employeeDetails":[{"Key":"string","Value":"Error"}]}}
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete","data":{"fileLogId":"00000000-0000-0000-0000-000000000000","totalNew":0,"totalRecords":0,"totalUpdates":0,"totalErrors":0,"totalNoChange":0,"totalEmpIdUpdate":0,"totalAuthValueChange":0,"totalStatusChange":0,"totalDuplicates":0,"duplicateAuthValues":["Dup1","Dup2","Dup3"],"thresholdExceptions":["Exception1","Exception2"],"errorDetails":[{"line":3,"value":"Auth value 1 validation failed"}],"employeeDetails":[{"Key":"string","Value":"Error"}]}}
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":false,"message":"No Records to process"}
+                },
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":false,"message":"No Records to process"}
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":false,"message":"No Records to process"}
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/admin/authdata/{fileLogId}": {
+        "post": {
+          "tags": [
+            "Admin"
+          ],
+          "summary": "Initiates processing of previously staged auth data",
+          "parameters": [
+            {
+              "name": "fileLogId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete"}
+                },
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete"}
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete"}
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "examples": {
+                    "Missing or invalid fileLogId": {
+                      "value": {"success":false,"message":"Missing or invalid fileLogId"}
                     },
-                    {
-                        "name": "auth2",
-                        "in": "query",
-                        "description": "Format - int32.",
-                        "type": "integer"
+                    "No records in need of processing": {
+                      "value": {"success":false,"message":"No records in need of processing for file"}
+                    },
+                    "No auth data found": {
+                      "value": {"success":false,"message":"No auth data found for file"}
                     }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OKAY DOKAY"
-                    }
+                  }
                 },
-                "produces": [
-                    "application/vnd.collection+json"
-                ]
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "examples": {
+                    "Missing or invalid fileLogId": {
+                      "value": {"success":false,"message":"Missing or invalid fileLogId"}
+                    },
+                    "No records in need of processing": {
+                      "value": {"success":false,"message":"No records in need of processing for file"}
+                    },
+                    "No auth data found": {
+                      "value": {"success":false,"message":"No auth data found for file"}
+                    }
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "examples": {
+                    "Missing or invalid fileLogId": {
+                      "value": {"success":false,"message":"Missing or invalid fileLogId"}
+                    },
+                    "No records in need of processing": {
+                      "value": {"success":false,"message":"No records in need of processing for file"}
+                    },
+                    "No auth data found": {
+                      "value": {"success":false,"message":"No auth data found for file"}
+                    }
+                  }
+                }
+              }
             }
+          }
+        }
+      },
+      "/api/v1/admin/company-profile": {
+        "get": {
+          "tags": [
+            "Admin"
+          ],
+          "summary": "Returns CompanyProfile for companyId found in token",
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete","data":{"companyProfileId":"00000000-0000-0000-0000-000000000000","companyId":"58a99b08-df37-4381-b937-27c512a2658d","startDate":"2022-01-12T00:00:00-05:00","workAddressLocked":false,"homeAddressLocked":false,"companyName":"Example Company","uploadScheduleBlurb":"Text","allowBlindSignups":false,"loginRestrictedCompletely":false,"loginRestrictedToAdmins":false,"demoCompany":true,"loginRestrictedToSSO":false},"operationResults":[]}
+                },
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete","data":{"companyProfileId":"00000000-0000-0000-0000-000000000000","companyId":"58a99b08-df37-4381-b937-27c512a2658d","startDate":"2022-01-12T00:00:00-05:00","workAddressLocked":false,"homeAddressLocked":false,"companyName":"Example Company","uploadScheduleBlurb":"Text","allowBlindSignups":false,"loginRestrictedCompletely":false,"loginRestrictedToAdmins":false,"demoCompany":true,"loginRestrictedToSSO":false},"operationResults":[]}
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete","data":{"companyProfileId":"00000000-0000-0000-0000-000000000000","companyId":"58a99b08-df37-4381-b937-27c512a2658d","startDate":"2022-01-12T00:00:00-05:00","workAddressLocked":false,"homeAddressLocked":false,"companyName":"Example Company","uploadScheduleBlurb":"Text","allowBlindSignups":false,"loginRestrictedCompletely":false,"loginRestrictedToAdmins":false,"demoCompany":true,"loginRestrictedToSSO":false},"operationResults":[]}
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":false,"message":"No Records to process"}
+                },
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":false,"message":"No Records to process"}
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":false,"message":"No Records to process"}
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/admin/companyusers/{companyUserId}": {
+        "get": {
+          "tags": [
+            "Admin"
+          ],
+          "summary": "Returns CompanyUser for requested companyUserId",
+          "parameters": [
+            {
+              "name": "companyUserId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete","data":{"companyUserId":"0e236456-5df2-4b1c-a970-fe400cc73555","companyId":"76314dc3-7eb3-43fb-8f68-9bba5f4582a6","active":true,"entered":"2022-01-03T11:30:40.1924458-05:00","employeeIdentifier":"TESTID01","employeeStatus":"A","clientAdmin":false,"isFlagged":false},"operationResults":[]}
+                },
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete","data":{"companyUserId":"0e236456-5df2-4b1c-a970-fe400cc73555","companyId":"76314dc3-7eb3-43fb-8f68-9bba5f4582a6","active":true,"entered":"2022-01-03T11:30:40.1924458-05:00","employeeIdentifier":"TESTID01","employeeStatus":"A","clientAdmin":false,"isFlagged":false},"operationResults":[]}
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete","data":{"companyUserId":"0e236456-5df2-4b1c-a970-fe400cc73555","companyId":"76314dc3-7eb3-43fb-8f68-9bba5f4582a6","active":true,"entered":"2022-01-03T11:30:40.1924458-05:00","employeeIdentifier":"TESTID01","employeeStatus":"A","clientAdmin":false,"isFlagged":false},"operationResults":[]}
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":false,"message":"No Records to process"}
+                },
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":false,"message":"No Records to process"}
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":false,"message":"No Records to process"}
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/admin/companyusers": {
+        "get": {
+          "tags": [
+            "Admin"
+          ],
+          "summary": "Returns CompanyUser for company requested employeeId",
+          "parameters": [
+            {
+              "name": "employeeId",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete","data":{"companyUserId":"869c7578-1ebf-49e8-bcd2-bcf69377c0cd","companyId":"ac8c303a-0fee-4658-ad51-c727442b74ff","active":true,"entered":"2022-01-03T11:30:40.1969576-05:00","employeeIdentifier":"TESTID01","employeeStatus":"A","clientAdmin":false,"isFlagged":false},"operationResults":[]}
+                },
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete","data":{"companyUserId":"869c7578-1ebf-49e8-bcd2-bcf69377c0cd","companyId":"ac8c303a-0fee-4658-ad51-c727442b74ff","active":true,"entered":"2022-01-03T11:30:40.1969576-05:00","employeeIdentifier":"TESTID01","employeeStatus":"A","clientAdmin":false,"isFlagged":false},"operationResults":[]}
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete","data":{"companyUserId":"869c7578-1ebf-49e8-bcd2-bcf69377c0cd","companyId":"ac8c303a-0fee-4658-ad51-c727442b74ff","active":true,"entered":"2022-01-03T11:30:40.1969576-05:00","employeeIdentifier":"TESTID01","employeeStatus":"A","clientAdmin":false,"isFlagged":false},"operationResults":[]}
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":false,"message":"No Records to process"}
+                },
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":false,"message":"No Records to process"}
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":false,"message":"No Records to process"}
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/admin/companyusers/{employeeId}/roles": {
+        "get": {
+          "tags": [
+            "Admin"
+          ],
+          "summary": "Returns array of Roles for company requested employeeId",
+          "parameters": [
+            {
+              "name": "employeeId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete","data":[{"name":"Employee","description":"Employee role","employeeRole":true,"clientAdminRole":false,"hideFromUI":false,"roleId":"7e896319-a907-4eaa-883e-45dc4b5dd85f","createdBy":"00000000-0000-0000-0000-000000000000","createdDate":"0001-01-01T00:00:00","currentUserHasSameOrMoreFunctionalRights":false,"defaultRole":true},{"name":"Administrator","description":"Administrator role","employeeRole":false,"clientAdminRole":true,"hideFromUI":false,"roleId":"7830a656-f3f6-43c8-a9ec-e27f202d59d6","createdBy":"00000000-0000-0000-0000-000000000000","createdDate":"0001-01-01T00:00:00","currentUserHasSameOrMoreFunctionalRights":false,"defaultRole":false}],"operationResults":[]}
+                },
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete","data":[{"name":"Employee","description":"Employee role","employeeRole":true,"clientAdminRole":false,"hideFromUI":false,"roleId":"7e896319-a907-4eaa-883e-45dc4b5dd85f","createdBy":"00000000-0000-0000-0000-000000000000","createdDate":"0001-01-01T00:00:00","currentUserHasSameOrMoreFunctionalRights":false,"defaultRole":true},{"name":"Administrator","description":"Administrator role","employeeRole":false,"clientAdminRole":true,"hideFromUI":false,"roleId":"7830a656-f3f6-43c8-a9ec-e27f202d59d6","createdBy":"00000000-0000-0000-0000-000000000000","createdDate":"0001-01-01T00:00:00","currentUserHasSameOrMoreFunctionalRights":false,"defaultRole":false}],"operationResults":[]}
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete","data":[{"name":"Employee","description":"Employee role","employeeRole":true,"clientAdminRole":false,"hideFromUI":false,"roleId":"7e896319-a907-4eaa-883e-45dc4b5dd85f","createdBy":"00000000-0000-0000-0000-000000000000","createdDate":"0001-01-01T00:00:00","currentUserHasSameOrMoreFunctionalRights":false,"defaultRole":true},{"name":"Administrator","description":"Administrator role","employeeRole":false,"clientAdminRole":true,"hideFromUI":false,"roleId":"7830a656-f3f6-43c8-a9ec-e27f202d59d6","createdBy":"00000000-0000-0000-0000-000000000000","createdDate":"0001-01-01T00:00:00","currentUserHasSameOrMoreFunctionalRights":false,"defaultRole":false}],"operationResults":[]}
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":false,"message":"No Records to process"}
+                },
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":false,"message":"No Records to process"}
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":false,"message":"No Records to process"}
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/admin/companyusers/{companyUserId}/artifact": {
+        "get": {
+          "tags": [
+            "Admin"
+          ],
+          "summary": "Returns array of artifact name/value pairs for requested companyUserId",
+          "parameters": [
+            {
+              "name": "companyUserId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete","data":{"companyUserArtifactId":"9090cd41-2c05-4a38-a89a-fdec7ecf3cc1","companyUserId":"48321aa7-d6a7-4aeb-b7af-826dd9b81064","active":true,"name":"ArtifactName","value":"ArtifaceValue","created":"2022-01-11T11:30:40.2025028-05:00"},"operationResults":[]}
+                },
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete","data":{"companyUserArtifactId":"9090cd41-2c05-4a38-a89a-fdec7ecf3cc1","companyUserId":"48321aa7-d6a7-4aeb-b7af-826dd9b81064","active":true,"name":"ArtifactName","value":"ArtifaceValue","created":"2022-01-11T11:30:40.2025028-05:00"},"operationResults":[]}
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete","data":{"companyUserArtifactId":"9090cd41-2c05-4a38-a89a-fdec7ecf3cc1","companyUserId":"48321aa7-d6a7-4aeb-b7af-826dd9b81064","active":true,"name":"ArtifactName","value":"ArtifaceValue","created":"2022-01-11T11:30:40.2025028-05:00"},"operationResults":[]}
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":false,"message":"No Records to process"}
+                },
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":false,"message":"No Records to process"}
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":false,"message":"No Records to process"}
+                }
+              }
+            }
+          }
         },
-        "/authorization/{id}": {
-            "get": {
-                "description": "Gets current auth token status",
-                "operationId": "GetAuthStatus",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/id"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    }
-                },
-                "produces": [
-                    "application/hal+json",
-                    "text/plain"
-                ]
+        "post": {
+          "tags": [
+            "Admin"
+          ],
+          "parameters": [
+            {
+              "name": "companyUserId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
             }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyUserArtifactModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyUserArtifactModel"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyUserArtifactModel"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
         }
+      },
+      "/api/v1/admin/companyusers/userprofile": {
+        "post": {
+          "tags": [
+            "Admin"
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyUserProfileModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyUserProfileModel"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyUserProfileModel"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/api/v1/admin/company-info": {
+        "get": {
+          "tags": [
+            "Admin"
+          ],
+          "summary": "Returns Company info for companyId found in token",
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete","data":{"companyId":"0d515931-e915-41f8-b8cf-7c26cbea588b","companyName":"Example Company","reportingName":"Example Company","urlSuffix":"example","isActive":true},"operationResults":[]}
+                },
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete","data":{"companyId":"0d515931-e915-41f8-b8cf-7c26cbea588b","companyName":"Example Company","reportingName":"Example Company","urlSuffix":"example","isActive":true},"operationResults":[]}
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete","data":{"companyId":"0d515931-e915-41f8-b8cf-7c26cbea588b","companyName":"Example Company","reportingName":"Example Company","urlSuffix":"example","isActive":true},"operationResults":[]}
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":false,"message":"No Records to process"}
+                },
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":false,"message":"No Records to process"}
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":false,"message":"No Records to process"}
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/admin/user-email": {
+        "put": {
+          "tags": [
+            "Admin"
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyUserEmailModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyUserEmailModel"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyUserEmailModel"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/api/v1/admin/companyusers/{companyUserId}/cicuser": {
+        "get": {
+          "tags": [
+            "Admin"
+          ],
+          "summary": "Returns CICUser info for companyUserId found in token",
+          "parameters": [
+            {
+              "name": "companyUserId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete","data":{"cicUserId":"d8dc0a97-d7ae-49ad-9772-1be5652d436e","userName":"username","firstName":"first","lastName":"last","companyId":"32460a4c-cdd4-49d6-8165-72cd4989765a","active":true,"applicationName":"GetMyTaxForm.com"},"operationResults":[]}
+                },
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete","data":{"cicUserId":"d8dc0a97-d7ae-49ad-9772-1be5652d436e","userName":"username","firstName":"first","lastName":"last","companyId":"32460a4c-cdd4-49d6-8165-72cd4989765a","active":true,"applicationName":"GetMyTaxForm.com"},"operationResults":[]}
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete","data":{"cicUserId":"d8dc0a97-d7ae-49ad-9772-1be5652d436e","userName":"username","firstName":"first","lastName":"last","companyId":"32460a4c-cdd4-49d6-8165-72cd4989765a","active":true,"applicationName":"GetMyTaxForm.com"},"operationResults":[]}
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":false,"message":"No Records to process"}
+                },
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":false,"message":"No Records to process"}
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":false,"message":"No Records to process"}
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/admin/cicusers": {
+        "put": {
+          "tags": [
+            "Admin"
+          ],
+          "summary": "Change CicUser name",
+          "requestBody": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CicUserProfileModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CicUserProfileModel"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CicUserProfileModel"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/api/v1/admin/paystatements/file-statuses": {
+        "get": {
+          "tags": [
+            "Admin"
+          ],
+          "summary": "Returns array of FileLogStatuses for companyId found in token",
+          "parameters": [
+            {
+              "name": "showFilesBeforeAvailableDate",
+              "in": "query",
+              "schema": {
+                "type": "boolean",
+                "default": false
+              }
+            },
+            {
+              "name": "showUnapprovedFiles",
+              "in": "query",
+              "schema": {
+                "type": "boolean",
+                "default": false
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete","data":[{"fileProcessingLogId":"9fee13ff-79c5-4a3e-ac37-67fdb6b0a5dc","fileLogId":"a35c8df6-afe8-41ac-b07b-bd73f71a7d21","fileProcessingStatusId":"cc59d2c3-8094-42ad-9150-af56c94d30ed","cicUserId":"86b50c96-ba7e-4c0a-99a8-e4c2f98c373e","timestamp":"2022-01-13T09:30:40.2146974-05:00"},{"fileProcessingLogId":"6d0aa90f-ce96-4932-8089-e965fd1f375e","fileLogId":"a35c8df6-afe8-41ac-b07b-bd73f71a7d21","fileProcessingStatusId":"8f779565-412f-4714-add5-b8089dd5516f","cicUserId":"004d4ba1-0286-4014-92ef-a2db8ff3f258","timestamp":"2022-01-13T08:30:40.214744-05:00"}],"operationResults":[]}
+                },
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete","data":[{"fileProcessingLogId":"9fee13ff-79c5-4a3e-ac37-67fdb6b0a5dc","fileLogId":"a35c8df6-afe8-41ac-b07b-bd73f71a7d21","fileProcessingStatusId":"cc59d2c3-8094-42ad-9150-af56c94d30ed","cicUserId":"86b50c96-ba7e-4c0a-99a8-e4c2f98c373e","timestamp":"2022-01-13T09:30:40.2146974-05:00"},{"fileProcessingLogId":"6d0aa90f-ce96-4932-8089-e965fd1f375e","fileLogId":"a35c8df6-afe8-41ac-b07b-bd73f71a7d21","fileProcessingStatusId":"8f779565-412f-4714-add5-b8089dd5516f","cicUserId":"004d4ba1-0286-4014-92ef-a2db8ff3f258","timestamp":"2022-01-13T08:30:40.214744-05:00"}],"operationResults":[]}
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete","data":[{"fileProcessingLogId":"9fee13ff-79c5-4a3e-ac37-67fdb6b0a5dc","fileLogId":"a35c8df6-afe8-41ac-b07b-bd73f71a7d21","fileProcessingStatusId":"cc59d2c3-8094-42ad-9150-af56c94d30ed","cicUserId":"86b50c96-ba7e-4c0a-99a8-e4c2f98c373e","timestamp":"2022-01-13T09:30:40.2146974-05:00"},{"fileProcessingLogId":"6d0aa90f-ce96-4932-8089-e965fd1f375e","fileLogId":"a35c8df6-afe8-41ac-b07b-bd73f71a7d21","fileProcessingStatusId":"8f779565-412f-4714-add5-b8089dd5516f","cicUserId":"004d4ba1-0286-4014-92ef-a2db8ff3f258","timestamp":"2022-01-13T08:30:40.214744-05:00"}],"operationResults":[]}
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":false,"message":"No Records to process"}
+                },
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":false,"message":"No Records to process"}
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":false,"message":"No Records to process"}
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/admin/companyusers/{employeeId}/sso": {
+        "get": {
+          "tags": [
+            "Admin"
+          ],
+          "summary": "Returns SSO link for requested EmployeeId",
+          "parameters": [
+            {
+              "name": "employeeId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete","data":"https://www.paperlessemployee.com/SSOPortal.aspx?Token={TOKEN}&CompanyUrlSuffix=Example&Internal=1","operationResults":[]}
+                },
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete","data":"https://www.paperlessemployee.com/SSOPortal.aspx?Token={TOKEN}&CompanyUrlSuffix=Example&Internal=1","operationResults":[]}
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete","data":"https://www.paperlessemployee.com/SSOPortal.aspx?Token={TOKEN}&CompanyUrlSuffix=Example&Internal=1","operationResults":[]}
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":false,"message":"No Records to process"}
+                },
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":false,"message":"No Records to process"}
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":false,"message":"No Records to process"}
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/authorize/token": {
+        "post": {
+          "tags": [
+            "Authorize"
+          ],
+          "summary": "Authorizes a user",
+          "requestBody": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserSignInModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserSignInModel"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserSignInModel"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Returns a token string",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete","data":"eyJhbGciOiJodHRwOi8 ..... YKfF4IBdPBHKhOYdc"}
+                },
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete","data":"eyJhbGciOiJodHRwOi8 ..... YKfF4IBdPBHKhOYdc"}
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete","data":"eyJhbGciOiJodHRwOi8 ..... YKfF4IBdPBHKhOYdc"}
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "examples": {
+                    "Required data is missing": {
+                      "value": {"success":false,"message":"Required data is missing"}
+                    },
+                    "Invalid credentials": {
+                      "value": {"success":false,"message":"Invalid credentials"}
+                    }
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "examples": {
+                    "Required data is missing": {
+                      "value": {"success":false,"message":"Required data is missing"}
+                    },
+                    "Invalid credentials": {
+                      "value": {"success":false,"message":"Invalid credentials"}
+                    }
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "examples": {
+                    "Required data is missing": {
+                      "value": {"success":false,"message":"Required data is missing"}
+                    },
+                    "Invalid credentials": {
+                      "value": {"success":false,"message":"Invalid credentials"}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/authorize/tokensso": {
+        "get": {
+          "tags": [
+            "Authorize"
+          ],
+          "summary": "Authorizes an Azure token",
+          "parameters": [
+            {
+              "name": "tokenString",
+              "in": "query",
+              "description": "",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Returns a token string",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete","data":"eyJhbGciOiJodHRwOi8 ..... YKfF4IBdPBHKhOYdc"}
+                },
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete","data":"eyJhbGciOiJodHRwOi8 ..... YKfF4IBdPBHKhOYdc"}
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "example": {"success":true,"message":"Complete","data":"eyJhbGciOiJodHRwOi8 ..... YKfF4IBdPBHKhOYdc"}
+                }
+              }
+            },
+            "403": {
+              "description": "Forbidden",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "examples": {
+                    "Token deserialize": {
+                      "value": {"success":false,"message":"Error during token deserialize"}
+                    },
+                    "Bad token": {
+                      "value": {"success":false,"message":"Bad token"}
+                    },
+                    "Token from Authorization method was null": {
+                      "value": {"success":false,"message":"Token from Authorization method was null"}
+                    }
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "examples": {
+                    "Token deserialize": {
+                      "value": {"success":false,"message":"Error during token deserialize"}
+                    },
+                    "Bad token": {
+                      "value": {"success":false,"message":"Bad token"}
+                    },
+                    "Token from Authorization method was null": {
+                      "value": {"success":false,"message":"Token from Authorization method was null"}
+                    }
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiActionResult"
+                  },
+                  "examples": {
+                    "Token deserialize": {
+                      "value": {"success":false,"message":"Error during token deserialize"}
+                    },
+                    "Bad token": {
+                      "value": {"success":false,"message":"Bad token"}
+                    },
+                    "Token from Authorization method was null": {
+                      "value": {"success":false,"message":"Token from Authorization method was null"}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/cicadmin/url-suffix": {
+        "get": {
+          "tags": [
+            "CICAdmin"
+          ],
+          "parameters": [
+            {
+              "name": "urlSuffix",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/api/v1/cicadmin/{companyId}": {
+        "get": {
+          "tags": [
+            "CICAdmin"
+          ],
+          "parameters": [
+            {
+              "name": "companyId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            },
+            {
+              "name": "active",
+              "in": "query",
+              "schema": {
+                "type": "boolean"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/api/v1/cicadmin/{companyId}/details": {
+        "get": {
+          "tags": [
+            "CICAdmin"
+          ],
+          "parameters": [
+            {
+              "name": "companyId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/api/v1/cicadmin/{companyId}/companyusers/{employeeId}/roles": {
+        "get": {
+          "tags": [
+            "CICAdmin"
+          ],
+          "parameters": [
+            {
+              "name": "companyId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            },
+            {
+              "name": "employeeId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/api/v1/cicadmin/{companyId}/email-template": {
+        "get": {
+          "tags": [
+            "CICAdmin"
+          ],
+          "parameters": [
+            {
+              "name": "companyId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            },
+            {
+              "name": "templateType",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "localizeCulture",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/api/v1/cicadmin/{companyId}/functional-rights": {
+        "get": {
+          "tags": [
+            "CICAdmin"
+          ],
+          "parameters": [
+            {
+              "name": "companyId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/api/v1/cicadmin/{companyId}/lines-of-business": {
+        "post": {
+          "tags": [
+            "CICAdmin"
+          ],
+          "parameters": [
+            {
+              "name": "companyId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            },
+            {
+              "name": "lineOfBusiness",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "CICAdmin"
+          ],
+          "parameters": [
+            {
+              "name": "companyId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            },
+            {
+              "name": "lineOfBusiness",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/api/v1/cicadmin/{companyId}/cicusers/{userName}": {
+        "get": {
+          "tags": [
+            "CICAdmin"
+          ],
+          "parameters": [
+            {
+              "name": "companyId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            },
+            {
+              "name": "userName",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/api/v1/cicadmin": {
+        "get": {
+          "tags": [
+            "CICAdmin"
+          ],
+          "summary": "Retrieve the list of all Companies",
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/api/v1/cicadmin/{companyId}/lines-of-business/all": {
+        "get": {
+          "tags": [
+            "CICAdmin"
+          ],
+          "parameters": [
+            {
+              "name": "companyId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/api/v1/cicadmin/sandbox": {
+        "post": {
+          "tags": [
+            "CICAdmin"
+          ],
+          "summary": "Creates a new company sandbox",
+          "requestBody": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanySandBoxModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanySandBoxModel"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanySandBoxModel"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/api/v1/cicadmin/sandbox/publish": {
+        "post": {
+          "tags": [
+            "CICAdmin"
+          ],
+          "summary": "Request to publish (promote) company sandbox to a new environment",
+          "parameters": [
+            {
+              "name": "environment",
+              "in": "query",
+              "description": "",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "companyUrl",
+              "in": "query",
+              "description": "",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "userId",
+              "in": "query",
+              "description": "",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/api/v1/cicadmin/{companyId}/deactivation": {
+        "post": {
+          "tags": [
+            "CICAdmin"
+          ],
+          "parameters": [
+            {
+              "name": "companyId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/api/v1/cicadmin/details": {
+        "post": {
+          "tags": [
+            "CICAdmin"
+          ],
+          "summary": "Creates a new Company (used when moving sandbox to a new environment)",
+          "requestBody": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyDetailModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyDetailModel"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyDetailModel"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/api/v1/cicadmin/lines-of-business/all": {
+        "get": {
+          "tags": [
+            "CICAdmin"
+          ],
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/api/v1/cicadmin/verification-types/all": {
+        "get": {
+          "tags": [
+            "CICAdmin"
+          ],
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/api/v1/cicadmin/companyusers/{companyUserId}": {
+        "get": {
+          "tags": [
+            "CICAdmin"
+          ],
+          "parameters": [
+            {
+              "name": "companyUserId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "CICAdmin"
+          ],
+          "parameters": [
+            {
+              "name": "companyUserId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/api/v1/cicadmin/companyusers": {
+        "post": {
+          "tags": [
+            "CICAdmin"
+          ],
+          "summary": "Create new Company User",
+          "requestBody": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyUserModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyUserModel"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyUserModel"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/api/v1/cicadmin/companyusers/{companyUserId}/admin-role": {
+        "post": {
+          "tags": [
+            "CICAdmin"
+          ],
+          "summary": "Add Admin role for Company User for the line of business",
+          "parameters": [
+            {
+              "name": "companyUserId",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            },
+            {
+              "name": "lineOfBusiness",
+              "in": "query",
+              "description": "",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/api/v1/cicadmin/file-upload-types": {
+        "get": {
+          "tags": [
+            "CICAdmin"
+          ],
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/api/v1/cicadmin/{companyId}/companyusers": {
+        "get": {
+          "tags": [
+            "CICAdmin"
+          ],
+          "parameters": [
+            {
+              "name": "companyId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            },
+            {
+              "name": "employeeId",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/api/v1/cicadmin/token/{companyId}": {
+        "get": {
+          "tags": [
+            "CICAdmin"
+          ],
+          "summary": "Obtain Token for a specific Company",
+          "parameters": [
+            {
+              "name": "companyId",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/api/v1/cicadmin/workertoken": {
+        "get": {
+          "tags": [
+            "CICAdmin"
+          ],
+          "summary": "Authorizes a service account user",
+          "parameters": [
+            {
+              "name": "workerUrlSuffix",
+              "in": "query",
+              "description": "",
+              "schema": {
+                "type": "string"
+              },
+              "example": "WorkerUrlSuffix"
+            },
+            {
+              "name": "workerName",
+              "in": "query",
+              "description": "",
+              "schema": {
+                "type": "string"
+              },
+              "example": "WorkerName"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Returns a worker token for service account"
+            }
+          }
+        }
+      },
+      "/api/v1/cicadmin/cicusers": {
+        "post": {
+          "tags": [
+            "CICAdmin"
+          ],
+          "summary": "Save CicUser data",
+          "requestBody": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CicUserModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CicUserModel"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CicUserModel"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/api/v1/cicadmin/user-contact": {
+        "post": {
+          "tags": [
+            "CICAdmin"
+          ],
+          "summary": "Create CompanyUser Contact",
+          "requestBody": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyUserContactModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyUserContactModel"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyUserContactModel"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/version": {
+        "get": {
+          "tags": [
+            "Version"
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     },
-    "parameters": {
-        "id": {
-            "name": "id",
-            "in": "path",
-            "description": "Format - int32.",
-            "required": true,
-            "type": "integer"
+    "components": {
+      "schemas": {
+        "AnnouncementModel": {
+          "type": "object",
+          "properties": {
+            "announcementId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "announcementTypeId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "targetId": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            },
+            "startDate": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "endDate": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "display": {
+              "type": "string",
+              "nullable": true
+            },
+            "displayOrder": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "created": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "active": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "ApiActionResult": {
+          "type": "object",
+          "properties": {
+            "success": {
+              "type": "boolean"
+            },
+            "message": {
+              "type": "string",
+              "nullable": true
+            },
+            "data": {
+              "nullable": true
+            },
+            "operationResults": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/OperationResult"
+              },
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "AuthDataRequestModel": {
+          "type": "object",
+          "properties": {
+            "validate": {
+              "type": "boolean"
+            },
+            "allowNoAuth": {
+              "type": "boolean"
+            },
+            "commit": {
+              "type": "boolean"
+            },
+            "fileLogId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "employee": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/AuthRecordModel"
+              },
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "AuthRecordModel": {
+          "type": "object",
+          "properties": {
+            "employeeId": {
+              "type": "string",
+              "nullable": true
+            },
+            "employeeStatus": {
+              "type": "string",
+              "nullable": true
+            },
+            "authValue1": {
+              "type": "string",
+              "nullable": true
+            },
+            "authValue2": {
+              "type": "string",
+              "nullable": true
+            },
+            "authValue3": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "CicUserModel": {
+          "type": "object",
+          "properties": {
+            "cicUserId": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            },
+            "userName": {
+              "type": "string",
+              "nullable": true
+            },
+            "passwordHash": {
+              "type": "string",
+              "nullable": true
+            },
+            "passwordSalt": {
+              "type": "string",
+              "nullable": true
+            },
+            "firstName": {
+              "type": "string",
+              "nullable": true
+            },
+            "middleName": {
+              "type": "string",
+              "nullable": true
+            },
+            "lastName": {
+              "type": "string",
+              "nullable": true
+            },
+            "companyId": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            },
+            "email": {
+              "type": "string",
+              "nullable": true
+            },
+            "active": {
+              "type": "boolean"
+            },
+            "applicationName": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "CicUserProfileModel": {
+          "type": "object",
+          "properties": {
+            "cicUserId": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            },
+            "firstName": {
+              "type": "string",
+              "nullable": true
+            },
+            "middleName": {
+              "type": "string",
+              "nullable": true
+            },
+            "lastName": {
+              "type": "string",
+              "nullable": true
+            },
+            "companyId": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "CompanyAddressTypeModel": {
+          "type": "object",
+          "properties": {
+            "companyAddressTypeId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "companyId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "addressTypeId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "displayOrder": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "active": {
+              "type": "boolean"
+            },
+            "limitOne": {
+              "type": "boolean"
+            },
+            "eFormActionId": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            },
+            "primary": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "copyAddressTypeId": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            },
+            "mailingAddress": {
+              "type": "boolean",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "CompanyAuthenticationTypeModel": {
+          "type": "object",
+          "properties": {
+            "companyAuthenticationTypeId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "companyId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "authenticationTypeId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": {
+              "type": "string",
+              "nullable": true
+            },
+            "prompt": {
+              "type": "string",
+              "nullable": true
+            },
+            "adminPrompt": {
+              "type": "string",
+              "nullable": true
+            },
+            "regExValidate": {
+              "type": "string",
+              "nullable": true
+            },
+            "regExSearch": {
+              "type": "string",
+              "nullable": true
+            },
+            "regExReplace": {
+              "type": "string",
+              "nullable": true
+            },
+            "maxLength": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "toolTip": {
+              "type": "string",
+              "nullable": true
+            },
+            "adminToolTip": {
+              "type": "string",
+              "nullable": true
+            },
+            "isActive": {
+              "type": "boolean"
+            },
+            "displayOrder": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "fileLogErrorTypeId": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "CompanyContactTypeModel": {
+          "type": "object",
+          "properties": {
+            "companyContactTypeId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "companyId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "contactTypeId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "prompt": {
+              "type": "string",
+              "nullable": true
+            },
+            "note": {
+              "type": "string",
+              "nullable": true
+            },
+            "customRegExValidationExpression": {
+              "type": "string",
+              "nullable": true
+            },
+            "customRegExValidationErrorMessage": {
+              "type": "string",
+              "nullable": true
+            },
+            "required": {
+              "type": "boolean"
+            },
+            "retypeRequired": {
+              "type": "boolean"
+            },
+            "order": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "useWithUserAccount": {
+              "type": "boolean"
+            },
+            "active": {
+              "type": "boolean",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "CompanyDefaultRoleModel": {
+          "type": "object",
+          "properties": {
+            "companyDefaultRoleId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "companyId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "roleId": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          "additionalProperties": false
+        },
+        "CompanyDeliveryGroupModel": {
+          "type": "object",
+          "properties": {
+            "companyDeliveryGroupId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "companyId": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            },
+            "groupName": {
+              "type": "string",
+              "nullable": true
+            },
+            "created": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "deleted": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "active": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "CompanyDeliveryMethodModel": {
+          "type": "object",
+          "properties": {
+            "companyDeliveryMethodId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "companyLineOfBusinessId": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            },
+            "deliveryMethodId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "default": {
+              "type": "boolean"
+            },
+            "displayName": {
+              "type": "string",
+              "nullable": true
+            },
+            "order": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "active": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "companyDeliveryGroupId": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            },
+            "created": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "deleted": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "companyId": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "CompanyDetailModel": {
+          "type": "object",
+          "properties": {
+            "company": {
+              "$ref": "#/components/schemas/CompanyModel"
+            },
+            "companyProfile": {
+              "$ref": "#/components/schemas/CompanyProfileModel"
+            },
+            "fileManagementStorage": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/FileManagementStorageModel"
+              },
+              "nullable": true
+            },
+            "fileLog": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/FileLogModel"
+              },
+              "nullable": true
+            },
+            "fileProcessingLog": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/FileProcessingLogModel"
+              },
+              "nullable": true
+            },
+            "companyYearEndSetting": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CompanyYearEndSettingModel"
+              },
+              "nullable": true
+            },
+            "companyLineOfBusiness": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CompanyLineOfBusinessModel"
+              },
+              "nullable": true
+            },
+            "companySetting": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CompanySettingModel"
+              },
+              "nullable": true
+            },
+            "companySecuritySetting": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CompanySecuritySettingModel"
+              },
+              "nullable": true
+            },
+            "companyContactType": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CompanyContactTypeModel"
+              },
+              "nullable": true
+            },
+            "announcement": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/AnnouncementModel"
+              },
+              "nullable": true
+            },
+            "companyDeliveryGroup": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CompanyDeliveryGroupModel"
+              },
+              "nullable": true
+            },
+            "companyDeliveryMethod": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CompanyDeliveryMethodModel"
+              },
+              "nullable": true
+            },
+            "templatedNotification": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/TemplatedNotificationModel"
+              },
+              "nullable": true
+            },
+            "payStub": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/PayStubModel"
+              },
+              "nullable": true
+            },
+            "companyPayStubSetting": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CompanyPayStubSettingModel"
+              },
+              "nullable": true
+            },
+            "outputVersion": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/OutputVersionModel"
+              },
+              "nullable": true
+            },
+            "outputStyle": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/OutputStyleModel"
+              },
+              "nullable": true
+            },
+            "xmlTransformation": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/XmlTransformationModel"
+              },
+              "nullable": true
+            },
+            "pdfTemplate": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/PdfTemplateModel"
+              },
+              "nullable": true
+            },
+            "companyLogoImage": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CompanyLogoImageModel"
+              },
+              "nullable": true
+            },
+            "role": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/RoleModel"
+              },
+              "nullable": true
+            },
+            "companyDefaultRole": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CompanyDefaultRoleModel"
+              },
+              "nullable": true
+            },
+            "functionalRight": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/FunctionalRightModel"
+              },
+              "nullable": true
+            },
+            "functionalRightAssignment": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/FunctionalRightAssignmentModel"
+              },
+              "nullable": true
+            },
+            "companyUser": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CompanyUserModel"
+              },
+              "nullable": true
+            },
+            "cicUser": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CicUserModel"
+              },
+              "nullable": true
+            },
+            "companyUserRole": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CompanyUserRoleModel"
+              },
+              "nullable": true
+            },
+            "companyUserContact": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CompanyUserContactModel"
+              },
+              "nullable": true
+            },
+            "companyOAuthProfile": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CompanyOAuthProfileModel"
+              },
+              "nullable": true
+            },
+            "companyOAuthCertificate": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CompanyOAuthCertificateModel"
+              },
+              "nullable": true
+            },
+            "companyAddressType": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CompanyAddressTypeModel"
+              },
+              "nullable": true
+            },
+            "companySecurityConfiguration": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CompanySecurityConfigurationModel"
+              },
+              "nullable": true
+            },
+            "companyAuthenticationType": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CompanyAuthenticationTypeModel"
+              },
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "CompanyLineOfBusinessModel": {
+          "type": "object",
+          "properties": {
+            "companyLineOfBusinessId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "companyId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "lineOfBusinessId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "active": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "CompanyLogoImageModel": {
+          "type": "object",
+          "properties": {
+            "companyLogoImageId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "urlSuffix": {
+              "type": "string",
+              "nullable": true
+            },
+            "mimeType": {
+              "type": "string",
+              "nullable": true
+            },
+            "active": {
+              "type": "boolean"
+            },
+            "description": {
+              "type": "string",
+              "nullable": true
+            },
+            "entered": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "image": {
+              "type": "string",
+              "format": "byte",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "CompanyModel": {
+          "type": "object",
+          "properties": {
+            "companyId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "companyName": {
+              "type": "string",
+              "nullable": true
+            },
+            "companyLogo": {
+              "type": "string",
+              "format": "byte",
+              "nullable": true
+            },
+            "reportingName": {
+              "type": "string",
+              "nullable": true
+            },
+            "urlSuffix": {
+              "type": "string",
+              "nullable": true
+            },
+            "isActive": {
+              "type": "boolean"
+            },
+            "purgedPiiDate": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "azureClientId": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            },
+            "azureTenantId": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "CompanyOAuthCertificateModel": {
+          "type": "object",
+          "properties": {
+            "oAuthCertificateConfigurationId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "oAuthCompanyProfileId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "publicCertificateName": {
+              "type": "string",
+              "nullable": true
+            },
+            "publicCertificateExpirationDate": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "publicCertificate": {
+              "type": "string",
+              "nullable": true
+            },
+            "privateCertificateName": {
+              "type": "string",
+              "nullable": true
+            },
+            "privateCertificateExpirationDate": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "privateCertificate": {
+              "type": "string",
+              "nullable": true
+            },
+            "privateCertificatePassword": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "CompanyOAuthProfileModel": {
+          "type": "object",
+          "properties": {
+            "oAuthCompanyProfileId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "companyId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "companyUserId": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            },
+            "hashAlgorithm": {
+              "type": "string",
+              "nullable": true
+            },
+            "salt": {
+              "type": "string",
+              "nullable": true
+            },
+            "key": {
+              "type": "string",
+              "nullable": true
+            },
+            "clientSecret": {
+              "type": "string",
+              "nullable": true
+            },
+            "secret": {
+              "type": "string",
+              "nullable": true
+            },
+            "grantType": {
+              "type": "string",
+              "nullable": true
+            },
+            "tokenExpirationMinutes": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "scope": {
+              "type": "string",
+              "nullable": true
+            },
+            "redirectURI": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "CompanyPayStubSettingModel": {
+          "type": "object",
+          "properties": {
+            "companyPayStubSettingId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "companyId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "key": {
+              "type": "string",
+              "nullable": true
+            },
+            "value": {
+              "type": "string",
+              "nullable": true
+            },
+            "active": {
+              "type": "boolean"
+            },
+            "entered": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "additionalProperties": false
+        },
+        "CompanyProfileModel": {
+          "type": "object",
+          "properties": {
+            "companyProfileId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "companyId": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            },
+            "startDate": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "stopDate": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "workAddressLocked": {
+              "type": "boolean"
+            },
+            "homeAddressLocked": {
+              "type": "boolean"
+            },
+            "companyName": {
+              "type": "string",
+              "nullable": true
+            },
+            "taxId": {
+              "type": "string",
+              "nullable": true
+            },
+            "activeAsOf": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "uploadScheduleBlurb": {
+              "type": "string",
+              "nullable": true
+            },
+            "ivrPhoneNumberDialed": {
+              "type": "string",
+              "nullable": true
+            },
+            "allowBlindSignups": {
+              "type": "boolean"
+            },
+            "loginRestrictedCompletely": {
+              "type": "boolean"
+            },
+            "loginRestrictedToAdmins": {
+              "type": "boolean"
+            },
+            "demoCompany": {
+              "type": "boolean"
+            },
+            "loginRestrictedToSSO": {
+              "type": "boolean"
+            },
+            "loginRestrictedToSSOAndAdmin": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "useAccessCode": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "accessCodeDescription": {
+              "type": "string",
+              "nullable": true
+            },
+            "accessCodeRegEx": {
+              "type": "string",
+              "nullable": true
+            },
+            "accessCodeLabel": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "CompanySandBoxModel": {
+          "type": "object",
+          "properties": {
+            "sourceCompanyId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "company": {
+              "$ref": "#/components/schemas/CompanyModel"
+            },
+            "cicUser": {
+              "$ref": "#/components/schemas/CicUserModel"
+            }
+          },
+          "additionalProperties": false
+        },
+        "CompanySecurityConfigurationModel": {
+          "type": "object",
+          "properties": {
+            "companySecurityConfigurationId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "companyId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "certificate": {
+              "type": "string",
+              "nullable": true
+            },
+            "name": {
+              "type": "string",
+              "nullable": true
+            },
+            "active": {
+              "type": "boolean"
+            },
+            "version": {
+              "type": "string",
+              "nullable": true
+            },
+            "password": {
+              "type": "string",
+              "nullable": true
+            },
+            "hashAlgorithm": {
+              "type": "string",
+              "nullable": true
+            },
+            "maxTimeDifferentialSeconds": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "expirationDate": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "createdDate": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "deletedDate": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "issuer": {
+              "type": "string",
+              "nullable": true
+            },
+            "privateCertificateName": {
+              "type": "string",
+              "nullable": true
+            },
+            "privateCertificate": {
+              "type": "string",
+              "nullable": true
+            },
+            "privateCertificateExpirationDate": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "CompanySecuritySettingModel": {
+          "type": "object",
+          "properties": {
+            "companySecuritySettingId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "companyId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "cicRoleId": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            },
+            "rowId": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "passwordMinLength": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "passwordMaxLength": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "passwordUppercaseCharsAllowed": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "passwordLowercaseCharsAllowed": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "passwordNumberCharsAllowed": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "passwordSpecialCharsAllowed": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "passwordMinimumCharacterClasses": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "passwordMinAge": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "passwordMaxAge": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "passwordResetType": {
+              "type": "string",
+              "nullable": true
+            },
+            "passwordMaxAgeWarning": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "passwordExpirationWarningEmails": {
+              "type": "string",
+              "nullable": true
+            },
+            "passwordInvalidAttempts": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "passwordInvalidAttemptWindow": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "passwordHistory": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "lockoutDuration": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "lockoutErrorMessage": {
+              "type": "string",
+              "nullable": true
+            },
+            "lockoutEndUserNotificationEmails": {
+              "type": "string",
+              "nullable": true
+            },
+            "lockoutSecurityTeamNotificationEmails": {
+              "type": "string",
+              "nullable": true
+            },
+            "staleAccountDuration": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "staleAccountResetType": {
+              "type": "string",
+              "nullable": true
+            },
+            "staleAccountErrorMessage": {
+              "type": "string",
+              "nullable": true
+            },
+            "permittedIPAddresses": {
+              "type": "string",
+              "nullable": true
+            },
+            "active": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "passwordResetEmailLinkAllowed": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "passwordResetEmailCodeAllowed": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "passwordResetSmsCodeAllowed": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "passwordResetQuestionsAllowed": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "passwordResetCodeLifespan": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "twoFactorAuthenticationRequired": {
+              "type": "boolean"
+            },
+            "duoSecurityIntegrationKey": {
+              "type": "string",
+              "nullable": true
+            },
+            "duoSecuritySecretKey": {
+              "type": "string",
+              "nullable": true
+            },
+            "duoSecurityApplicationSecretKey": {
+              "type": "string",
+              "nullable": true
+            },
+            "duoSecurityApiHostname": {
+              "type": "string",
+              "nullable": true
+            },
+            "sessionTimeout": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "twoFactorAuthenticationRememberMeTimeout": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "forceYesOnLockoutNotification": {
+              "type": "boolean"
+            },
+            "cookieResetUserNamePasswordLifeSpan": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "resetLinkLifeSpan": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "contactVerificationLifeSpan": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "twoFactorAuthenticationOptions": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "CompanySettingModel": {
+          "type": "object",
+          "properties": {
+            "companySettingId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "companyId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": {
+              "type": "string",
+              "nullable": true
+            },
+            "value": {
+              "type": "string",
+              "nullable": true
+            },
+            "active": {
+              "type": "boolean"
+            },
+            "entered": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "additionalProperties": false
+        },
+        "CompanyUserArtifactModel": {
+          "type": "object",
+          "properties": {
+            "companyUserArtifactId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "companyUserId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "active": {
+              "type": "boolean"
+            },
+            "name": {
+              "type": "string",
+              "nullable": true
+            },
+            "value": {
+              "type": "string",
+              "nullable": true
+            },
+            "created": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "additionalProperties": false
+        },
+        "CompanyUserContactModel": {
+          "type": "object",
+          "properties": {
+            "companyUserContactId": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            },
+            "companyUserId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "companyContactTypeId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "address": {
+              "type": "string",
+              "nullable": true
+            },
+            "active": {
+              "type": "boolean"
+            },
+            "payStubAlert": {
+              "type": "boolean"
+            },
+            "payStubSummary": {
+              "type": "boolean"
+            },
+            "taxFormAlert": {
+              "type": "boolean"
+            },
+            "acaAlert": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "CompanyUserEmailModel": {
+          "type": "object",
+          "properties": {
+            "companyUserId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "emailAddress": {
+              "type": "string",
+              "nullable": true
+            },
+            "active": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "CompanyUserModel": {
+          "type": "object",
+          "properties": {
+            "companyUserId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "cicUserId": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            },
+            "companyId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "active": {
+              "type": "boolean"
+            },
+            "entered": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "employeeIdentifier": {
+              "type": "string",
+              "nullable": true
+            },
+            "employeeStatus": {
+              "type": "string",
+              "nullable": true
+            },
+            "conflictId": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            },
+            "conflictType": {
+              "type": "string",
+              "nullable": true
+            },
+            "sourceFileLogId": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            },
+            "clientAdmin": {
+              "type": "boolean"
+            },
+            "dataRightId": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            },
+            "isFlagged": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "CompanyUserProfileModel": {
+          "type": "object",
+          "properties": {
+            "employeeIdentifier": {
+              "type": "string",
+              "nullable": true
+            },
+            "firstName": {
+              "type": "string",
+              "nullable": true
+            },
+            "middleName": {
+              "type": "string",
+              "nullable": true
+            },
+            "lastName": {
+              "type": "string",
+              "nullable": true
+            },
+            "email": {
+              "type": "string",
+              "nullable": true
+            },
+            "brandingCssKey": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "CompanyUserRoleModel": {
+          "type": "object",
+          "properties": {
+            "companyUserRoleId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "companyUserId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "roleId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "createdBy": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "createdDate": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "deletedBy": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            },
+            "deletedDate": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "active": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "additionalProperties": false
+        },
+        "CompanyYearEndSettingModel": {
+          "type": "object",
+          "properties": {
+            "companyYearEndSettingId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "companyId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "allowElectronicYearEnd": {
+              "type": "boolean"
+            },
+            "electronicConsentYear": {
+              "type": "string",
+              "nullable": true
+            },
+            "requireAnnualElectronicConsent": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "allowReissues": {
+              "type": "boolean"
+            },
+            "allowCorrectionRequests": {
+              "type": "boolean"
+            },
+            "allowElectronicOriginals": {
+              "type": "boolean"
+            },
+            "allowJacksonHewitt": {
+              "type": "boolean"
+            },
+            "allowHRBlock": {
+              "type": "boolean"
+            },
+            "allowTurBoTax": {
+              "type": "boolean"
+            },
+            "hideZerosChargeOfReissue": {
+              "type": "boolean"
+            },
+            "allowElectronicOriginalsACA": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "allowElectronicACA": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "electronicConsentYearACA": {
+              "type": "string",
+              "nullable": true
+            },
+            "cPreparer": {
+              "type": "string",
+              "nullable": true
+            },
+            "bPreparer": {
+              "type": "string",
+              "nullable": true
+            },
+            "cReplacementCorrectionSwitch": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "bReplacementCorrectionSwitch": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "subclientAca": {
+              "type": "string",
+              "nullable": true
+            },
+            "cSubmitter": {
+              "type": "string",
+              "nullable": true
+            },
+            "bSubmitter": {
+              "type": "string",
+              "nullable": true
+            },
+            "acaCorrectionEmailAddresses": {
+              "type": "string",
+              "nullable": true
+            },
+            "yeCorrectionEmailAddresses": {
+              "type": "string",
+              "nullable": true
+            },
+            "allowOverrideDateACA": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "acaClientProvidedId": {
+              "type": "string",
+              "nullable": true
+            },
+            "acaClientProvidedUrl": {
+              "type": "string",
+              "nullable": true
+            },
+            "acaClientSecondaryUrl": {
+              "type": "string",
+              "nullable": true
+            },
+            "suppressElectronicOriginal": {
+              "type": "boolean"
+            },
+            "suppressPrintOriginal": {
+              "type": "boolean"
+            },
+            "acaSuppressElectronicOriginal": {
+              "type": "boolean"
+            },
+            "acaSuppressPrintOriginal": {
+              "type": "boolean"
+            },
+            "acaSuppressElectronicCorrection": {
+              "type": "boolean"
+            },
+            "acaSuppressPrintCorrection": {
+              "type": "boolean"
+            },
+            "allowCorrectionRequestsAca": {
+              "type": "boolean"
+            },
+            "contractDriven": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "marketingMessage": {
+              "type": "string",
+              "nullable": true
+            },
+            "allowCallCenter": {
+              "type": "boolean"
+            },
+            "customEmail": {
+              "type": "boolean"
+            },
+            "customEmailNote": {
+              "type": "string",
+              "nullable": true
+            },
+            "hideOriginalAddressLinkInPE": {
+              "type": "boolean"
+            },
+            "acaHideOriginalAddressLinkInPE": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "FileLogModel": {
+          "type": "object",
+          "properties": {
+            "fileLogId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "companyId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "fileTypeId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "cicUserId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "timestamp": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "fileName": {
+              "type": "string",
+              "nullable": true
+            },
+            "description": {
+              "type": "string",
+              "nullable": true
+            },
+            "isOutgoingFile": {
+              "type": "boolean"
+            },
+            "isTestFile": {
+              "type": "boolean"
+            },
+            "availableAfter": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "contactListGenerated": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "lineOfBusinessId": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            },
+            "taxYear": {
+              "type": "string",
+              "nullable": true
+            },
+            "archiveDate": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "deleteDate": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "isProcessing": {
+              "type": "boolean"
+            },
+            "isPending": {
+              "type": "boolean"
+            },
+            "fileHashSignature": {
+              "type": "string",
+              "nullable": true
+            },
+            "fileSource": {
+              "type": "string",
+              "nullable": true
+            },
+            "fileDestination": {
+              "type": "string",
+              "nullable": true
+            },
+            "targetDeleteDate": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "hostName": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "FileManagementStorageModel": {
+          "type": "object",
+          "properties": {
+            "fileStorageId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "companyId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "file": {
+              "type": "string",
+              "format": "byte",
+              "nullable": true
+            },
+            "fileName": {
+              "type": "string",
+              "nullable": true
+            },
+            "dateEntered": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "archive": {
+              "type": "boolean"
+            },
+            "archiveDate": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "FileProcessingLogModel": {
+          "type": "object",
+          "properties": {
+            "fileProcessingLogId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "fileLogId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "fileProcessingStatusId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "cicUserId": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            },
+            "timestamp": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "additionalProperties": false
+        },
+        "FunctionalRightAssignmentModel": {
+          "type": "object",
+          "properties": {
+            "functionalRightAssignmentId": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            },
+            "functionalRightId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "lineOfBusinessId": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            },
+            "category": {
+              "type": "string",
+              "nullable": true
+            },
+            "functionName": {
+              "type": "string",
+              "nullable": true
+            },
+            "functionDescription": {
+              "type": "string",
+              "nullable": true
+            },
+            "employeeRight": {
+              "type": "boolean"
+            },
+            "clientAdminRight": {
+              "type": "boolean"
+            },
+            "roleID": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "roleName": {
+              "type": "string",
+              "nullable": true
+            },
+            "roleDescription": {
+              "type": "string",
+              "nullable": true
+            },
+            "clientAdminRole": {
+              "type": "boolean"
+            },
+            "employeeRole": {
+              "type": "boolean"
+            },
+            "isGranted": {
+              "type": "boolean"
+            },
+            "createdBy": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "createdDate": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "deletedBy": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "deletedDate": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "companyId": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          "additionalProperties": false
+        },
+        "FunctionalRightModel": {
+          "type": "object",
+          "properties": {
+            "functionalRightId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "lineOfBusinessId": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            },
+            "companyId": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            },
+            "category": {
+              "type": "string",
+              "nullable": true
+            },
+            "name": {
+              "type": "string",
+              "nullable": true
+            },
+            "description": {
+              "type": "string",
+              "nullable": true
+            },
+            "employeeRight": {
+              "type": "boolean"
+            },
+            "clientAdminRight": {
+              "type": "boolean"
+            },
+            "businessName": {
+              "type": "string",
+              "nullable": true
+            },
+            "isReport": {
+              "type": "boolean"
+            },
+            "hideFromUI": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "OperationResult": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "string",
+              "nullable": true
+            },
+            "message": {
+              "type": "string",
+              "nullable": true
+            },
+            "type": {
+              "$ref": "#/components/schemas/OperationResultType"
+            }
+          },
+          "additionalProperties": false
+        },
+        "OperationResultType": {
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "type": "integer",
+          "format": "int32"
+        },
+        "OutputStyleModel": {
+          "type": "object",
+          "properties": {
+            "outputStyleId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "outputVersionId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "xmlTransformationId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "pdfTemplateId": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            },
+            "type": {
+              "type": "string",
+              "nullable": true
+            },
+            "culture": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "OutputVersionModel": {
+          "type": "object",
+          "properties": {
+            "outputVersionId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "companyId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "xmlSchemaId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": {
+              "type": "string",
+              "nullable": true
+            },
+            "versionDate": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "additionalProperties": false
+        },
+        "PayStubModel": {
+          "type": "object",
+          "properties": {
+            "payStubId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "fileLogId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "companyUserId": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            },
+            "outputVersionId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "checkDate": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "grossPay": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "totalTaxes": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "totalDeductions": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "netPay": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "xmlData": {
+              "$ref": "#/components/schemas/XElement"
+            },
+            "xmlDataCompressed": {
+              "type": "string",
+              "format": "byte",
+              "nullable": true
+            },
+            "archived": {
+              "type": "boolean"
+            },
+            "timestamp": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "voidTimestamp": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "voidCicUserId": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            },
+            "voidFilelogId": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            },
+            "checkNumber": {
+              "type": "string",
+              "nullable": true
+            },
+            "checkType": {
+              "type": "string",
+              "nullable": true
+            },
+            "companyId": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            },
+            "employeeIdentifier": {
+              "type": "string",
+              "nullable": true
+            },
+            "firstName": {
+              "type": "string",
+              "nullable": true
+            },
+            "lastName": {
+              "type": "string",
+              "nullable": true
+            },
+            "dataRightName": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "PdfTemplateModel": {
+          "type": "object",
+          "properties": {
+            "pdfTemplateId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "xmlTransformationId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": {
+              "type": "string",
+              "nullable": true
+            },
+            "type": {
+              "type": "string",
+              "nullable": true
+            },
+            "template": {
+              "type": "string",
+              "format": "byte",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "RoleModel": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "nullable": true
+            },
+            "description": {
+              "type": "string",
+              "nullable": true
+            },
+            "employeeRole": {
+              "type": "boolean"
+            },
+            "clientAdminRole": {
+              "type": "boolean"
+            },
+            "hideFromUI": {
+              "type": "boolean"
+            },
+            "roleId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "companyId": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            },
+            "createdBy": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "createdDate": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "deletedBy": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            },
+            "deletedDate": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "applicationName": {
+              "type": "string",
+              "nullable": true
+            },
+            "companyDefaultRoleId": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            },
+            "currentUserHasSameOrMoreFunctionalRights": {
+              "type": "boolean"
+            },
+            "defaultRole": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "TemplatedNotificationModel": {
+          "type": "object",
+          "properties": {
+            "templatedNotificationAccessId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "companyId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "templateType": {
+              "type": "string",
+              "nullable": true
+            },
+            "subject": {
+              "type": "string",
+              "nullable": true
+            },
+            "message": {
+              "type": "string",
+              "nullable": true
+            },
+            "active": {
+              "type": "boolean"
+            },
+            "entered": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "inactivateDate": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "senderNameOverride": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "staggerCount": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "locked": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "templateTypeId": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            },
+            "noHTMLType": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "header": {
+              "type": "string",
+              "nullable": true
+            },
+            "body": {
+              "type": "string",
+              "nullable": true
+            },
+            "showGoToMyDocuments": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "goToMyDocumentsText": {
+              "type": "string",
+              "nullable": true
+            },
+            "footer": {
+              "type": "string",
+              "nullable": true
+            },
+            "useDefaultUnsubscribe": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "unsubscribe": {
+              "type": "string",
+              "nullable": true
+            },
+            "goToUrl": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "UserSignInModel": {
+          "type": "object",
+          "properties": {
+            "userName": {
+              "type": "string",
+              "nullable": true
+            },
+            "password": {
+              "type": "string",
+              "nullable": true
+            },
+            "companyUrlSuffix": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "XAttribute": {
+          "type": "object",
+          "properties": {
+            "baseUri": {
+              "type": "string",
+              "nullable": true,
+              "readOnly": true
+            },
+            "document": {
+              "$ref": "#/components/schemas/XDocument"
+            },
+            "parent": {
+              "$ref": "#/components/schemas/XElement"
+            },
+            "isNamespaceDeclaration": {
+              "type": "boolean",
+              "readOnly": true
+            },
+            "name": {
+              "$ref": "#/components/schemas/XName"
+            },
+            "nextAttribute": {
+              "$ref": "#/components/schemas/XAttribute"
+            },
+            "nodeType": {
+              "$ref": "#/components/schemas/XmlNodeType"
+            },
+            "previousAttribute": {
+              "$ref": "#/components/schemas/XAttribute"
+            },
+            "value": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "XDeclaration": {
+          "type": "object",
+          "properties": {
+            "encoding": {
+              "type": "string",
+              "nullable": true
+            },
+            "standalone": {
+              "type": "string",
+              "nullable": true
+            },
+            "version": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "XDocument": {
+          "type": "object",
+          "properties": {
+            "baseUri": {
+              "type": "string",
+              "nullable": true,
+              "readOnly": true
+            },
+            "document": {
+              "$ref": "#/components/schemas/XDocument"
+            },
+            "parent": {
+              "$ref": "#/components/schemas/XElement"
+            },
+            "nextNode": {
+              "$ref": "#/components/schemas/XNode"
+            },
+            "previousNode": {
+              "$ref": "#/components/schemas/XNode"
+            },
+            "firstNode": {
+              "$ref": "#/components/schemas/XNode"
+            },
+            "lastNode": {
+              "$ref": "#/components/schemas/XNode"
+            },
+            "declaration": {
+              "$ref": "#/components/schemas/XDeclaration"
+            },
+            "documentType": {
+              "$ref": "#/components/schemas/XDocumentType"
+            },
+            "nodeType": {
+              "$ref": "#/components/schemas/XmlNodeType"
+            },
+            "root": {
+              "$ref": "#/components/schemas/XElement"
+            }
+          },
+          "additionalProperties": false
+        },
+        "XDocumentType": {
+          "type": "object",
+          "properties": {
+            "baseUri": {
+              "type": "string",
+              "nullable": true,
+              "readOnly": true
+            },
+            "document": {
+              "$ref": "#/components/schemas/XDocument"
+            },
+            "parent": {
+              "$ref": "#/components/schemas/XElement"
+            },
+            "nextNode": {
+              "$ref": "#/components/schemas/XNode"
+            },
+            "previousNode": {
+              "$ref": "#/components/schemas/XNode"
+            },
+            "internalSubset": {
+              "type": "string",
+              "nullable": true
+            },
+            "name": {
+              "type": "string",
+              "nullable": true
+            },
+            "nodeType": {
+              "$ref": "#/components/schemas/XmlNodeType"
+            },
+            "publicId": {
+              "type": "string",
+              "nullable": true
+            },
+            "systemId": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "XElement": {
+          "type": "object",
+          "properties": {
+            "baseUri": {
+              "type": "string",
+              "nullable": true,
+              "readOnly": true
+            },
+            "document": {
+              "$ref": "#/components/schemas/XDocument"
+            },
+            "parent": {
+              "$ref": "#/components/schemas/XElement"
+            },
+            "nextNode": {
+              "$ref": "#/components/schemas/XNode"
+            },
+            "previousNode": {
+              "$ref": "#/components/schemas/XNode"
+            },
+            "firstNode": {
+              "$ref": "#/components/schemas/XNode"
+            },
+            "lastNode": {
+              "$ref": "#/components/schemas/XNode"
+            },
+            "firstAttribute": {
+              "$ref": "#/components/schemas/XAttribute"
+            },
+            "hasAttributes": {
+              "type": "boolean",
+              "readOnly": true
+            },
+            "hasElements": {
+              "type": "boolean",
+              "readOnly": true
+            },
+            "isEmpty": {
+              "type": "boolean",
+              "readOnly": true
+            },
+            "lastAttribute": {
+              "$ref": "#/components/schemas/XAttribute"
+            },
+            "name": {
+              "$ref": "#/components/schemas/XName"
+            },
+            "nodeType": {
+              "$ref": "#/components/schemas/XmlNodeType"
+            },
+            "value": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "XmlNodeType": {
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17
+          ],
+          "type": "integer",
+          "format": "int32"
+        },
+        "XmlTransformationModel": {
+          "type": "object",
+          "properties": {
+            "xmlTransformationId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "xmlSchemaId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": {
+              "type": "string",
+              "nullable": true
+            },
+            "outputFormat": {
+              "type": "string",
+              "nullable": true
+            },
+            "xslt": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "XName": {
+          "type": "object",
+          "properties": {
+            "localName": {
+              "type": "string",
+              "nullable": true,
+              "readOnly": true
+            },
+            "namespace": {
+              "$ref": "#/components/schemas/XNamespace"
+            },
+            "namespaceName": {
+              "type": "string",
+              "nullable": true,
+              "readOnly": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "XNamespace": {
+          "type": "object",
+          "properties": {
+            "namespaceName": {
+              "type": "string",
+              "nullable": true,
+              "readOnly": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "XNode": {
+          "type": "object",
+          "properties": {
+            "baseUri": {
+              "type": "string",
+              "nullable": true,
+              "readOnly": true
+            },
+            "document": {
+              "$ref": "#/components/schemas/XDocument"
+            },
+            "nodeType": {
+              "$ref": "#/components/schemas/XmlNodeType"
+            },
+            "parent": {
+              "$ref": "#/components/schemas/XElement"
+            },
+            "nextNode": {
+              "$ref": "#/components/schemas/XNode"
+            },
+            "previousNode": {
+              "$ref": "#/components/schemas/XNode"
+            }
+          },
+          "additionalProperties": false
         }
-    }
-}
+      },
+      "securitySchemes": {
+        "Bearer": {
+          "type": "apiKey",
+          "description": "JWT Authorization header using the Bearer scheme.",
+          "name": "Authorization",
+          "in": "header"
+        }
+      }
+    },
+    "security": [
+      {
+        "Bearer": [ ]
+      }
+    ]
+  }
