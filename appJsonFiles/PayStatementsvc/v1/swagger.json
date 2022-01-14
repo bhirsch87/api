@@ -13,7 +13,7 @@
       "/api/v1/paystatement/cicadmin/source-data/{fileId}/cic-approve": {
         "put": {
           "tags": [
-            "PayCicAdmin"
+            "CicAdmin"
           ],
           "summary": "CIC Administrator approval for an uploaded Pay Statement file",
           "parameters": [
@@ -105,7 +105,7 @@
       "/api/v1/paystatement/cicadmin/line-of-business-add/post-steps": {
         "post": {
           "tags": [
-            "PayCicAdmin"
+            "CicAdmin"
           ],
           "summary": "Save default transformation records for company new to Pay Statement line of business",
           "parameters": [
