@@ -1890,7 +1890,7 @@
       "/version": {
         "get": {
           "tags": [
-            "authVersion"
+            "Version"
           ],
           "responses": {
             "200": {

@@ -13,7 +13,7 @@
     "/api/v1/eforms/clientadmin/employee-data": {
       "post": {
         "tags": [
-          "EFormsClientAdmin"
+          "ClientAdmin"
         ],
         "requestBody": {
           "content": {
@@ -73,7 +73,7 @@
     "/api/v1/eforms/clientadmin/employee-form-status": {
       "get": {
         "tags": [
-          "EFormsClientAdmin"
+          "ClientAdmin"
         ],
         "parameters": [
           {
@@ -158,7 +158,7 @@
     "/api/v1/eforms/clientadmin/auxiliary-data": {
       "post": {
         "tags": [
-          "EFormsClientAdmin"
+          "ClientAdmin"
         ],
         "requestBody": {
           "content": {
