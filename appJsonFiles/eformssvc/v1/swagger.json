@@ -293,7 +293,7 @@
     "/version": {
       "get": {
         "tags": [
-          "Version"
+          "EformsVersion"
         ],
         "responses": {
           "200": {
