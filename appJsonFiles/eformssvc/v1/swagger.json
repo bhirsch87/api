@@ -218,7 +218,7 @@
     "/api/v1/eforms/employee/pending-forms": {
       "get": {
         "tags": [
-          "EFormsEmployee"
+          "Employee"
         ],
         "responses": {
           "200": {
@@ -250,7 +250,7 @@
     "/api/v1/eforms/employee/eform({eformId})": {
       "get": {
         "tags": [
-          "EFormsEmployee"
+          "Employee"
         ],
         "parameters": [
           {
